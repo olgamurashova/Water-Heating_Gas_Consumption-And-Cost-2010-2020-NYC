@@ -130,3 +130,47 @@ WHERE w."Service End Date" BETWEEN '01/01/2020' AND '12/31/2020'
 GROUP BY 1,2
 ORDER BY 3 DESC
 LIMIT 5;
+
+--Query 7: Comparing total water consumption charges for Williamsburg development in 2020 and 2015:
+
+SELECT "Development Name",
+"Borough",
+SUM("Current Charges") AS "2020_Water_Charges",
+(SELECT
+SUM("Current Charges")
+FROM Public."Water_Consumption_Cost"
+WHERE "Development Name" = 'WILLIAMSBURG'
+AND "Service End Date" BETWEEN '01/01/2015' AND '12/31/2015') AS "2015_Water_Charges",
+SUM("Current Charges") -
+(SELECT
+SUM("Current Charges")
+FROM Public."Water_Consumption_Cost"
+WHERE "Development Name" = 'WILLIAMSBURG'
+AND "Service End Date" BETWEEN '01/01/2015' AND '12/31/2015') AS Diff
+FROM Public."Water_Consumption_Cost"
+WHERE "Development Name" = 'WILLIAMSBURG'
+AND "Service End Date" BETWEEN '01/01/2020' AND '12/31/2020'
+GROUP BY 1,2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT "Development Name", 
+Replace(Replace("Development Name", '(', ''), ')', '')
+FROM Public."Water_Consumption_Cost";
