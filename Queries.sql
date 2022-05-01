@@ -39,7 +39,7 @@ ALTER TABLE IF EXISTS public."Water_Consumption_Cost"
     OWNER to postgres;
     
     
---Query2 Create Gas_Consumption_Cost table
+--Query 2: Create Gas_Consumption_Cost table
  
  -- Table: public.Gas_Consumption_Cost
 
@@ -79,4 +79,15 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public."Gas_Consumption_Cost"
     OWNER to postgres;
     
---Query 3
+--Query 3: Returning 5 developments with with the highest water consumption rate in 2020:
+
+SELECT "Development Name",
+"Borough",
+MAX("Consumption (HCF)") AS "Highest_Water_Consumers"
+FROM Public."Water_Consumption_Cost"
+WHERE "Service End Date" BETWEEN '01/01/2020' AND '12/31/2020'
+GROUP BY 1, 2
+ORDER BY 3 DESC
+LIMIT 5;
+
+--Query 4:
