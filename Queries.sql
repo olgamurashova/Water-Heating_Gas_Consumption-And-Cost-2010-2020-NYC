@@ -90,4 +90,13 @@ GROUP BY 1, 2
 ORDER BY 3 DESC
 LIMIT 5;
 
---Query 4:
+--Query 4: Returning five developments with the highest rate of heating gas consumption in 2020
+
+SELECT "Development Name",
+"Borough",
+MAX("Consumption (Therms)") AS "Highest_Heating_Gas_Consumers"
+FROM Public."Gas_Consumption_Cost"
+WHERE "Service End Date" BETWEEN '01/01/2020' AND '12/31/2020'
+GROUP BY 1, 2
+ORDER BY 3 DESC
+LIMIT 5;
