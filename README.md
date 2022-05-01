@@ -3,3 +3,7 @@
 ### Project Description
 
 ### Tools & Technologies
+
++ PosgreSQL
++ pgAdmin
+
