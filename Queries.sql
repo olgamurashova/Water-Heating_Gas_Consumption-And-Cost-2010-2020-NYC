@@ -152,6 +152,19 @@ WHERE "Development Name" = 'WILLIAMSBURG'
 AND "Service End Date" BETWEEN '01/01/2020' AND '12/31/2020'
 GROUP BY 1,2;
 
+--Query 8: Comparing average water consumption in Hundred Cubic Feet in Queens and Brooklyn in 2020:
+
+SELECT
+ROUND(AVG("Consumption_HCF"), 2) AS "QNS_Water_Avg_2020",
+(SELECT
+ROUND(AVG("Consumption_HCF"), 2) 
+FROM Public."Water_Consumption_Cost"
+WHERE "Borough" = 'BROOKLYN'
+AND "Service End Date" >= '01/01/2020' AND "Service End Date" <= '12/31/2020'
+) AS "BK_Water_Avg_2020"
+FROM Public."Water_Consumption_Cost"
+WHERE "Borough" = 'QUEENS'
+AND "Service End Date" >= '01/01/2020' AND "Service End Date" <= '12/31/2020';
 
 
 
@@ -171,6 +184,6 @@ GROUP BY 1,2;
 
 
 
-SELECT "Development Name", 
-Replace(Replace("Development Name", '(', ''), ')', '')
-FROM Public."Water_Consumption_Cost";
+--SELECT "Development Name", 
+--Replace(Replace("Development Name", '(', ''), ')', '')
+--FROM Public."Water_Consumption_Cost";
