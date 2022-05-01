@@ -100,3 +100,20 @@ WHERE "Service End Date" BETWEEN '01/01/2020' AND '12/31/2020'
 GROUP BY 1, 2
 ORDER BY 3 DESC
 LIMIT 5;
+
+--Query 5: Returning five developments with the highest total water charges and their corresponding total heating gas charges in 2020:
+
+SELECT 
+w."Development Name",
+w."Borough",
+SUM(w."Current Charges") AS "Total_Water_Charges",
+SUM(g."Current Charges") AS "Total_Gas_Charges"
+FROM Public."Water_Consumption_Cost" as w
+JOIN Public."Gas_Consumption_Cost" as g
+ON w."TDS #" = g."TDS #"
+WHERE w."Service End Date" BETWEEN '01/01/2020' AND '12/31/2020'
+GROUP BY 1,2
+ORDER BY 3 DESC
+LIMIT 5;
+
+--Query 6:
