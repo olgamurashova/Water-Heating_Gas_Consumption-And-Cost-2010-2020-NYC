@@ -166,7 +166,7 @@ FROM Public."Water_Consumption_Cost"
 WHERE "Borough" = 'QUEENS'
 AND "Service End Date" >= '01/01/2020' AND "Service End Date" <= '12/31/2020';
 
---Query 9: Calculating max water consumption and charges by development name for 2015-05 revenue month.
+--Query 9: Calculating max water consumption and charges by development name in Queens for 2015-05 revenue month.
 
 SELECT 
 	"Development Name",
