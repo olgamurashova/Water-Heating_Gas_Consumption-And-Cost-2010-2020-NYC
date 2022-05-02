@@ -166,6 +166,35 @@ FROM Public."Water_Consumption_Cost"
 WHERE "Borough" = 'QUEENS'
 AND "Service End Date" >= '01/01/2020' AND "Service End Date" <= '12/31/2020';
 
+--Query 9: Calculating max water consumption and charges by 2015-05 revenue month.
+
+SELECT 
+	"Development Name",
+	"Borough",
+	"Location",
+	"TDS #",
+	"Revenue Month",
+    MAX("Consumption_HCF") OVER(PARTITION BY "Revenue Month") AS Max_HCF, 
+    MAX("Current Charges") OVER(PARTITION BY "Revenue Month") AS Max_Charge
+FROM public."Water_Consumption_Cost"
+WHERE 
+	"Borough" = 'QUEENS'
+	AND
+	"Revenue Month" = '2015-05';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 --SELECT
 ROUND(AVG("Consumption_HCF"), 2) AS "QNS_Water_Avg_2020",
