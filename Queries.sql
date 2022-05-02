@@ -167,7 +167,17 @@ WHERE "Borough" = 'QUEENS'
 AND "Service End Date" >= '01/01/2020' AND "Service End Date" <= '12/31/2020';
 
 
-
+--SELECT
+ROUND(AVG("Consumption_HCF"), 2) AS "QNS_Water_Avg_2020",
+(SELECT ROUND(AVG("Consumption_Therms"), 2)
+FROM Public."Gas_Consumption_Cost"
+WHERE "Borough" = 'QUEENS'
+AND "Service End Date" >= '01/01/2020' AND "Service End Date" <= '12/31/2020') AS "QNS_Gas_Avg_2020"
+FROM Public."Water_Consumption_Cost" AS w
+JOIN Public."Gas_Consumption_Cost" AS g
+ON w."TDS #" = g."TDS #"
+WHERE w."Borough" = 'QUEENS'
+AND w."Service End Date" >= '01/01/2020' AND w."Service End Date" <= '12/31/2020';
 
 
 
