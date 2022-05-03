@@ -10,4 +10,6 @@ The datasets can be found [here](https://data.cityofnewyork.us/Housing-Developme
 + PosgreSQL
 + pgAdmin
 + SQL queries
++ Python Pandas
++ Jupyter Notebook
 
